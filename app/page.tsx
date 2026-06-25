@@ -69,13 +69,15 @@ export default function HomePage() {
       <div className="space-y-4 mt-8">
 
         <FileCard
-          id="Bot WhatsApp MD"
+		  id="bot whatsapp md"
+          title="Bot WhatsApp MD"
           size="2.3 MB"
           category="WhatsApp"
         />
 
         <FileCard
-          id="Telegram AI Bot"
+		  id="telegram ai bot"
+          title="Telegram AI Bot"
           size="1.1 MB"
           category="Telegram"
         />
