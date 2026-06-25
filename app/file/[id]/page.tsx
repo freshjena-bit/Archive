@@ -1,13 +1,9 @@
 import { supabaseServer } from "@/lib/supabase-server";
 import Link from "next/link";
-import MarkdownPreview
-from "@/components/MarkdownPreview";
-import Comments
-from "@/components/Comments";
-import FavoriteButton
-from "@/components/FavoriteButton";
-import Rating
-from "@/components/Rating";
+import MarkdownPreview from "@/components/MarkdownPreview";
+import Comments from "@/components/Comments";
+import FavoriteButton from "@/components/FavoriteButton";
+import Rating from "@/components/Rating";
 
 export default async function FileDetail({
   params,
