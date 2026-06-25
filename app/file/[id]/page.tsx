@@ -72,8 +72,6 @@ export default async function FileDetail({
 	    }
 	  />
 
-	</div>
-
       <div className="flex gap-3 mt-5">
 
         <span className="border px-3 py-1 rounded-full">
