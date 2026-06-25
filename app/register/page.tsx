@@ -11,23 +11,34 @@ export default function RegisterPage() {
     useState("");
 
   async function register() {
-    const { error } =
-      await supabase.auth.signUp({
-        email,
-        password,
-      });
+    const {
+      data,
+      error
+    } = await supabase.auth.signUp({
+      email,
+      password,
+    });
 
     if (error) {
       alert(error.message);
       return;
     }
 
-    alert("Register berhasil");
+    if (!data.user) {
+      alert("Register gagal");
+      return;
+    }
+
+    alert(
+      "Register berhasil, cek email jika diminta verifikasi"
+    );
+
     location.href = "/login";
   }
 
   return (
     <main className="max-w-md mx-auto p-6">
+
       <h1 className="text-3xl font-bold mb-6">
         Register
       </h1>
@@ -55,6 +66,7 @@ export default function RegisterPage() {
       >
         Register
       </button>
+
     </main>
   );
 }
