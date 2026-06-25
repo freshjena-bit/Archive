@@ -1,51 +1,38 @@
 "use client";
 
-import { supabase } from "@/lib/supabase-browser";
+import { useState } from "react";
 
 export default function Rating({
   fileId,
-}: {
-  fileId: string;
 }) {
+  const [rating, setRating] = useState(0);
 
-  async function rate(
-    value: number
-  ) {
+  async function submitRating(value) {
+    setRating(value);
 
-    const {
-      data: userData,
-    } = await supabase.auth.getUser();
-
-    const user =
-      userData.user;
-
-    if (!user) return;
-
-    await supabase
-      .from("ratings")
-      .insert({
-        file_id: fileId,
-        user_id: user.id,
+    await fetch("/api/rating", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fileId,
         rating: value,
-      });
-
-    alert("Rated");
+      }),
+    });
   }
 
   return (
     <div className="flex gap-2">
-
-      {[1,2,3,4,5].map((n)=>(
+      {[1, 2, 3, 4, 5].map((star) => (
         <button
-          key={n}
-          onClick={() =>
-            rate(n)
-          }
+          key={star}
+          onClick={() => submitRating(star)}
+          className="text-2xl"
         >
-          ⭐
+          {star <= rating ? "★" : "☆"}
         </button>
       ))}
-
     </div>
   );
 }
